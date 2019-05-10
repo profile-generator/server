@@ -1,16 +1,13 @@
 const router = require('express').Router();
-const Articles = require('./articles');
 const Authorize = require('../middlewares/userAuthorization')
-const AuthControll = require('../controllers/users');
+const UserControll = require('../controllers/users');
 
-router.post('/signup',
-    multer.single('image'),
-    sendUploadToGCS,
-    AuthControll.signUp);
-router.post('/signin', AuthControll.signIn);
+router.get('/', UserControll.read);
+router.get('/:id', UserControll.readOne);
+router.post('/likes/:id',UserControll.like);
+router.post('/dislikes/:id',UserControll.dislike);
 
 
-router.use(Authentic);
 
 
 

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Authentic = require('../middlewares/authentication')
 const AuthControll = require('../controllers/users');
+const users = require('./users')
 const {
     sendUploadToGCS,
     multer
@@ -14,6 +15,7 @@ router.post('/signin', AuthControll.signIn);
 
 
 router.use(Authentic);
+router.use('/users', users);
 
 
 

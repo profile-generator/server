@@ -102,7 +102,7 @@ class User {
 
     static like(req, res) {
         user
-            .findByIdAndUpdate(req.body.userId, {
+            .findByIdAndUpdate(req.params.id, {
                 $push: {
                     likeBy: req.decoded.userId
                 }
@@ -110,11 +110,12 @@ class User {
                 new: true,
                 runValidators: false
             })
-            .then(user => {
+            .then(data => {
+                console.log(req.params.id)
                 return user
                     .findByIdAndUpdate(req.decoded.userId, {
                         $push: {
-                            likes: req.body.userId
+                            likes: req.params.id
                         }
                     }, {
                         new: true,
@@ -126,6 +127,7 @@ class User {
                     .json(user)
             })
             .catch(err => {
+                console.log(err)
                 res
                     .status(500)
                     .json(err)
@@ -134,7 +136,7 @@ class User {
 
     static dislike(req, res) {
         user
-            .findByIdAndUpdate(req.body.userId, {
+            .findByIdAndUpdate(req.params.userId, {
                 $pull: {
                     likeBy: req.decoded.userId
                 }
@@ -142,11 +144,11 @@ class User {
                 new: true,
                 runValidators: false
             })
-            .then(user => {
+            .then(data => {
                 return user
                     .findByIdAndUpdate(req.decoded.userId, {
                         $pull: {
-                            likes: req.body.userId
+                            likes: req.params.userId
                         }
                     }, {
                         new: true,
