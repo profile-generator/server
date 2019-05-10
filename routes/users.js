@@ -1,12 +1,9 @@
 const router = require('express').Router();
-const Authentic = require('../middlewares/authentication')
+const Articles = require('./articles');
+const Authorize = require('../middlewares/userAuthorization')
 const AuthControll = require('../controllers/users');
-const {
-    sendUploadToGCS,
-    multer
-} = require('../middlewares/multer');
 
-router.post('/register',
+router.post('/signup',
     multer.single('image'),
     sendUploadToGCS,
     AuthControll.signUp);

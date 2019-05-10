@@ -8,7 +8,7 @@ const express = require('express'),
 const app = express(),
     port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost:27017/mini-wp', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/profilr-generator', { useNewUrlParser: true });
 
 
 app.use(express.urlencoded({ extended: false }));

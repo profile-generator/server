@@ -23,7 +23,10 @@ const userSchema = new Schema({
         type: 'string',
         required: true
     },
-    profileImage: 'string',
+    profileImage: {
+        type: 'string',
+        required: true
+    },
     profileCard: 'string',
     likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],

@@ -1,4 +1,4 @@
-const Articles = require('../models/article');
+const User = require('../models/user');
 
 module.exports = function(req, res, next) {
     Articles
@@ -24,4 +24,10 @@ module.exports = function(req, res, next) {
                     .json(err)
             }
         })
+
+    if (req.decoded.userId === req.params.id) {
+        next()
+    } else {
+        throw { message: `Not authorize` }
+    }
 }
